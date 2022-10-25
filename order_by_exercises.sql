@@ -29,9 +29,17 @@ WHERE first_name IN ('Irena', 'Vidya', 'Maya') ORDER BY last_name, first_name;
 Write a query to to find all employees whose last name starts and ends with 'E'. Sort the results by their employee number. Enter a comment with the number of employees returned, the first employee number and their first and last name, and the last employee number with their first and last name.*/
 SELECT last_name, first_name, emp_no FROM employees
 WHERE RIGHT(last_name, 1) IN ('e') AND LEFT(last_name, 1) IN ('e') ORDER BY emp_no;
+-- 899/  10021 Ramzi Erde and  499648 Tadahiro Erde
 
 /*
-Write a query to to find all employees whose last name starts and ends with 'E'. Sort the results by their hire date, so that the newest employees are listed first. Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest employee.
--- additional text
+Write a query to to find all employees whose last name starts and ends with 'E'. Sort the results by their hire date, so that the newest employees are listed first. Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest employee.*/
+SELECT last_name, first_name, hire_date FROM employees
+WHERE RIGHT(last_name, 1) IN ('e') AND LEFT(last_name, 1) IN ('e') ORDER BY hire_date DESC;
+-- 899 / Teiji Eldridge - newest / Sergi Erde - oldest
 
+/*
 Find all employees hired in the 90s and born on Christmas. Sort the results so that the oldest employee who was hired last is the first result. Enter a comment with the number of employees returned, the name of the oldest employee who was hired last, and the name of the youngest employee who was hired first.*/
+SELECT * FROM `employees`
+WHERE birth_date LIKE '%-12-25%'
+AND hire_date BETWEEN '1990-01-01' AND '1999-12-31' ORDER by birth_date ASC, hire_date DESC;
+-- 362 / oldest hired last Khun Bernini/ youngest hired first Douadi Pettis
