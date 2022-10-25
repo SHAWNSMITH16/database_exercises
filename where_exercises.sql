@@ -27,7 +27,7 @@ WHERE LEFT(last_name, 1) = 'E'; -- 7330 rows
 /*
 Find all current or previous employees whose last name starts or ends with 'E'. Enter a comment with the number of employees whose last name starts or ends with E. How many employees have a last name that ends with E, but does not start with E?*/
 SELECT * FROM employees
-WHERE last_name NOT LIKE 'E%' AND last_name LIKE '%e'; -- 23393
+WHERE last_name LIKE 'E%' OR last_name LIKE '%e'; -- 30723
 
 /*
 Find all current or previous employees employees whose last name starts and ends with 'E'. Enter a comment with the number of employees whose last name starts and ends with E. How many employees' last names end with E, regardless of whether they start with E?*/
