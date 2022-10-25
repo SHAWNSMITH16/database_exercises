@@ -32,5 +32,6 @@ WHERE RIGHT(last_name, 1) IN ('e') AND LEFT(last_name, 1) IN ('e') ORDER BY emp_
 
 /*
 Write a query to to find all employees whose last name starts and ends with 'E'. Sort the results by their hire date, so that the newest employees are listed first. Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest employee.
+-- additional text
 
 Find all employees hired in the 90s and born on Christmas. Sort the results so that the oldest employee who was hired last is the first result. Enter a comment with the number of employees returned, the name of the oldest employee who was hired last, and the name of the youngest employee who was hired first.*/
