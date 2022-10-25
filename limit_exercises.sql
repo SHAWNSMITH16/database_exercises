@@ -7,18 +7,19 @@ MySQL provides a way to return only unique results from our queries with the key
 SELECT DISTINCT title FROM titles;
 List the first 10 distinct last name sorted in descending order.
 
-Facello
-Simmel
-Bamford
-Koblick
-Maliniak
-Preusig
-Zielinski
-Kalloufi
-Peac
-Piveteau*/
+Zykh
+Zyda
+Zwicker
+Zweizig
+Zumaque
+Zultner
+Zucker
+Zuberek
+Zschoche
+Zongker*/
 USE employees;
-SELECT DISTINCT last_name FROM employees
+SELECT DISTINCT last_name FROM employees 
+ORDER BY last_name DESC
 LIMIT 10;
 
 /*
