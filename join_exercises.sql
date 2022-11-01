@@ -135,19 +135,24 @@ ORDER BY AVG(salaries.salary) DESC;
 /* B1. Bonus Find the names of all current employees, their department name, and their current manager's name. */
 
 SELECT CONCAT(first_name, ' ', last_name) AS "Employee Name", dept_name AS 'Department' 
-FROM employees
-JOIN dept_emp
-ON dept_emp.emp_no = employees.emp_no
-JOIN departments
-ON departments.dept_no = dept_emp.dept_no
-WHERE dept_emp.to_date LIKE '9999%';
+FROM employees AS e
+	JOIN dept_emp
+		ON dept_emp.emp_no = e.emp_no
+	JOIN departments
+		ON departments.dept_no = dept_emp.dept_no
+	JOIN (SELECT 
+		CONCAT(employees.first_name, ' ', employees.last_name) AS 'Manager_Name'
+		FROM employees
+		JOIN dept_manager USING(emp_no)
+		WHERE dept_manager.to_date > CURDATE()) AS mn ON e.emp_no = mn.emp_no
+	WHERE dept_emp.to_date LIKE '9999%';
 
-(SELECT 
-CONCAT(employees.first_name, ' ', employees.last_name) AS 'Manager Name'
+SELECT 
+CONCAT(employees.first_name, ' ', employees.last_name) as 'Manager Name'
 FROM employees
 	JOIN dept_manager USING(emp_no)
 		# dept_manager.emp_no = employees.emp_no
-	WHERE dept_manager.to_date > CURDATE() )
+	WHERE dept_manager.to_date > CURDATE();
 
 
 
