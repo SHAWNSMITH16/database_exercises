@@ -7,10 +7,7 @@ USE employees;
 SELECT DISTINCT emp_no
 FROM employees; # 300024
 
-SELECT dept_emp.dept_no AS DEPARTMENT_NUMBER, emp_no, first_name, last_name,  
-dept_emp.from_date AS START_DATE, 
-dept_emp.to_date, 
-if (dept_emp.to_date >= CURDATE(), True, False) AS is_current_employee
+SELECT dept_no, emp_no, first_name, last_name,  from_date, to_date, if (to_date >= CURDATE(), True, False) AS is_current_employee
 FROM employees
 JOIN dept_emp USING(emp_no)
 
@@ -45,8 +42,8 @@ How many employees (current or previous) were born in each decade?*/
 
 SELECT COUNT(*),
 CASE 
-WHEN birth_date BETWEEN '1950-01-01' AND '1959-12-31' THEN 'Born_in_50s'
-WHEN birth_date >= '1960-01-01' THEN 'Born_in_60s'
+WHEN birth_date LIKE '195%' THEN 'Born_in_50s'
+ELSE 'Born_in_60s'
 END AS 'Decade_Born'
 FROM employees
 GROUP BY Decade_Born;
@@ -66,6 +63,7 @@ END AS department_groups
 FROM departments
 JOIN dept_emp USING (dept_no)
 JOIN salaries USING (emp_no)
-WHERE salaries.to_date > CURDATE()
+WHERE dept_emp.to_date > CURDATE()
+AND salaries.to_date > CURDATE()
 GROUP BY department_groups
 ;
